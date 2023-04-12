@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="web_list_view" model="ir.ui.view">
+        <field name="name">web.list.view</field>
+        <field name="model">web_apis.token</field>
+        <field name="arch" type="xml">
+            <tree string="Website">
+                <field name="token"/>
+                <field name="number"/>
+                <field name="res_user"/>
+            </tree>
+        </field>
+    </record>
+    <record id="web_form_view" model="ir.ui.view">
+        <field name="name">web.form.view</field>
+        <field name="model">web_apis.token</field>
+        <field name="arch" type="xml">
+            <form string="Website">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="token"/>
+                            <field name="number"/>
+                            <field name="res_user"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_web_agent" model="ir.actions.act_window">
+        <field name="name">Website</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">web_apis.token</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+        <p class="o_view_nocontent_smiling_face"> Create a new record! </p>
+        </field>
+    </record>
+    
+    <menuitem id="agent_web_menu" name="Web Apis"/>
+    <menuitem id="agent_api_menu" action="action_web_agent" parent="agent_web_menu" name="Web Apis"/>
+
+        
+        
+
+         
+</odoo>
