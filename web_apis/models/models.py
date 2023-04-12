@@ -3,7 +3,6 @@ import time
 import logging
 from odoo import models, api, fields
 
-
 _logger = logging.getLogger(__name__)
 
 try:
@@ -44,5 +43,16 @@ class WebApis(models.Model):
 		timestamp = int(time.time() + lifetime)
 		return self.create({'token': token, 'number': timestamp, 'res_user': uid})
 
+
+
+
+class ResgistrationAois(models.Model):
+	_name = 'registration.api'
+
+
+	email_id = fields.Char(string="Email")
+	password = fields.Char(string="Password")
+	mobile_number = fields.Char(string="Mobile Number")
+	Addrese = fields.Char(string="Addrese")
 
 

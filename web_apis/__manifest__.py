@@ -9,6 +9,8 @@
     'data': [
         'security/ir.model.access.csv',
         'views/web_view.xml',
+        'views/register_views.xml',
+        'views/website_form.xml',
         ],
     'demo': [
     ],

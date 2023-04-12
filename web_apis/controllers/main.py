@@ -24,6 +24,8 @@ from odoo import release
 from odoo.http import request
 from odoo.http import Response
 from odoo.tools.misc import str2bool
+from odoo import http
+from odoo.http import request
 
 _logger = logging.getLogger(__name__)
 
@@ -199,7 +201,7 @@ class WebTokenAccess(http.Controller):
 
 
     
-    @http.route('/api/authenticate',  auth="none", type='http', methods=['POST'], csrf=False)
+    @http.route('/api/authenticate',  auth="none", type='json', methods=['POST'], csrf=False)
     def api_authenticate(self, db=None, login=None, password=None, **kw):    
         check_params({'db': db, 'login': login, 'password': password})
 
@@ -213,8 +215,23 @@ class WebTokenAccess(http.Controller):
                 content_type='application/json;charset=utf-8', status=200) 
         else:
             abort(LOGIN_INVALID, status=401) 
+        
+class Registration(http.Controller):
 
+    @http.route('/create_user_webform',auth="public", type='http' ,website=True)
+    def create_webform(self, **kw):
+        return http.request.render('web_apis.Create_User',{})
+        
+        
+    @http.route('/Create/User/Register',auth="public", type='http' )
+    def create_user_register(self, **kw):
+        vals = {
+            'Addrese':kw.get('Addrese'),
+            'email_id':kw.get('email_id'),
+            'password' :kw.get('password'),
+            'mobile_number':kw.get('mobile_number'),
 
-
-
-    
+        }
+        request.env['registration.api'].sudo().create(vals)
+        
+        #return request.render('web_apis.patient_thanks',{})
